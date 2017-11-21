@@ -15,18 +15,18 @@
 ```bash
 
 $ python bars.py path_to_json_file_with_data # possibly requires call of python3 executive instead of just python
-The biggest Bar: Спорт бар «Красная машина»
-Number of seats: 450
+Самый большой бар: Спорт бар «Красная машина»
+Количество мест: 450
 
-The smallest Bar: Сушистор
-Number of seats: 0
+Самый маленький бар: Сушистор
+Количество мест: 0
 
-To find the nearest bar, enter your coordinates
-Enter your latitude 55.699058
-Enter your longitude 37.917861
+Для определения ближайшего бара введите ваши координаты
+Введите широту 55.699058
+Введите долготу 37.917861
 
-Nearest bar: Таверна
-Address: проспект Защитников Москвы, дом 8
+Ближайший бар: Таверна
+Адрес: проспект Защитников Москвы, дом 8
 
 ```
 

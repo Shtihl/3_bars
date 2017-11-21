@@ -11,17 +11,15 @@ def load_json_data(source_file):
 def get_biggest_bar(parsed_json_data):
     biggest_bar = max(parsed_json_data,
                       key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
-
-    return (biggest_bar['properties']['Attributes']['Name'],
-            biggest_bar['properties']['Attributes']['SeatsCount'])
+    bar_attributes = biggest_bar['properties']['Attributes']
+    return bar_attributes['Name'], bar_attributes['SeatsCount']
 
 
 def get_smallest_bar(parsed_json_data):
     smallest_bar = min(parsed_json_data,
                        key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
-
-    return (smallest_bar['properties']['Attributes']['Name'],
-            smallest_bar['properties']['Attributes']['SeatsCount'])
+    bar_attributes = smallest_bar['properties']['Attributes']
+    return bar_attributes['Name'], bar_attributes['SeatsCount']
 
 
 def get_closest_bar(parsed_json_data, longitude, latitude):
@@ -29,8 +27,8 @@ def get_closest_bar(parsed_json_data, longitude, latitude):
                       key=lambda point: get_distance(latitude,
                                                      longitude,
                                                      point['geometry']['coordinates']))
-    return (closest_bar['properties']['Attributes']['Name'],
-            closest_bar['properties']['Attributes']['Address'])
+    bar_attributes = closest_bar['properties']['Attributes']
+    return bar_attributes['Name'], bar_attributes['Address']
 
 
 def get_distance(latitude, longitude, user_point):
@@ -40,14 +38,14 @@ def get_distance(latitude, longitude, user_point):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         filepath = sys.argv[1]
-        print("The biggest Bar: {}\nNumber of seats: {}\n".format(
+        print("Самый большой бар: {}\nКоличество мест: {}\n".format(
             *get_biggest_bar(load_json_data(filepath))))
-        print("The smallest Bar: {}\nNumber of seats: {}\n".format(
+        print("Самый маленький бар: {}\nКоличество мест: {}\n".format(
             *get_smallest_bar(load_json_data(filepath))))
-        print("To find the nearest bar, enter your coordinates")
-        user_latitude = float(input("Enter your latitude "))
-        user_longitude = float(input("Enter your longitude "))
-        print("\nNearest bar: {}\nAddress: {}".format(
+        print("Для определения ближайшего бара введите ваши координаты")
+        user_latitude = float(input("Введите широту "))
+        user_longitude = float(input("Введите долготу "))
+        print("\nБлижайший бар: {}\nАдрес: {}".format(
             *get_closest_bar(load_json_data(filepath),
                              user_longitude,
                              user_latitude)
