@@ -24,16 +24,11 @@ def get_smallest_bar_info(bars_info):
 
 def get_closest_bar_info(bars_info, longitude, latitude):
     closest_bar = min(bars_info,
-                      key=lambda point: get_distance(latitude,
-                                                     longitude,
-                                                     point['geometry']['coordinates'][0],
-                                                     point['geometry']['coordinates'][1]))
+                      key=lambda point: sqrt(
+                          (latitude - point['geometry']['coordinates'][0])**2 +
+                          (longitude - point['geometry']['coordinates'][1])**2))
     bar_attributes = closest_bar['properties']['Attributes']
     return bar_attributes['Name'], bar_attributes['Address']
-
-
-def get_distance(user_latitude, user_longitude, bar_latitude, bar_longitude):
-    return sqrt((bar_latitude - user_latitude)**2 + (bar_longitude - user_longitude)**2)
 
 
 if __name__ == '__main__':
