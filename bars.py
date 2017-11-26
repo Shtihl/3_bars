@@ -31,21 +31,23 @@ def get_closest_bar_info(bars_info, latitude, longitude):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         filepath = sys.argv[1]
+        biggest_bar_info = get_biggest_bar_info(load_json_data(filepath))
         print("Самый большой бар: {}\nКоличество мест: {}\n".format(
-            get_biggest_bar_info(load_json_data(filepath))['Name'],
-            get_biggest_bar_info(load_json_data(filepath))['SeatsCount']))
+            biggest_bar_info['Name'],
+            biggest_bar_info['SeatsCount'])
+        smallest_bar_info = get_smallest_bar_info(load_json_data(filepath))
         print("Самый маленький бар: {}\nКоличество мест: {}\n".format(
-            get_smallest_bar_info(load_json_data(filepath))['Name'],
-            get_smallest_bar_info(load_json_data(filepath))['SeatsCount']))
+            smallest_bar_info['Name'],
+            smallest_bar_info['SeatsCount'])
         print("Для определения ближайшего бара введите ваши координаты")
         user_latitude = float(input("Введите широту "))
         user_longitude = float(input("Введите долготу "))
+        closest_bar_info = get_closest_bar_info(
+            load_json_data(filepath),
+            user_longitude,
+            user_latitude)
         print("\nБлижайший бар: {}\nАдрес: {}".format(
-            get_closest_bar_info(load_json_data(filepath),
-                                 user_longitude,
-                                 user_latitude)['Name'],
-            get_closest_bar_info(load_json_data(filepath),
-                                 user_longitude,
-                                 user_latitude)['Address']))
+            closest_bar_info['Name'],
+            closest_bar_info['Address'])
     else:
         print("Usage: python bars.py path_to_json_file")
