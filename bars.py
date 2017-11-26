@@ -34,11 +34,11 @@ if __name__ == '__main__':
         biggest_bar_info = get_biggest_bar_info(load_json_data(filepath))
         print("Самый большой бар: {}\nКоличество мест: {}\n".format(
             biggest_bar_info['Name'],
-            biggest_bar_info['SeatsCount'])
+            biggest_bar_info['SeatsCount']))
         smallest_bar_info = get_smallest_bar_info(load_json_data(filepath))
         print("Самый маленький бар: {}\nКоличество мест: {}\n".format(
             smallest_bar_info['Name'],
-            smallest_bar_info['SeatsCount'])
+            smallest_bar_info['SeatsCount']))
         print("Для определения ближайшего бара введите ваши координаты")
         user_latitude = float(input("Введите широту "))
         user_longitude = float(input("Введите долготу "))
@@ -48,6 +48,6 @@ if __name__ == '__main__':
             user_latitude)
         print("\nБлижайший бар: {}\nАдрес: {}".format(
             closest_bar_info['Name'],
-            closest_bar_info['Address'])
+            closest_bar_info['Address']))
     else:
         print("Usage: python bars.py path_to_json_file")
